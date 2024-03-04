@@ -1,8 +1,48 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/lib/filemanager/css/filemanager.min.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="container">
+        <div x-data="filemanager" class="filemanager">
+
+            @* Thanh công cụ *@
+            <div class="fm-toolbox">
+                Thanh cong cu
+            </div>
+
+            @* Cây thư mục *@
+            <div class="fm-folder-tree">
+                <ul>
+                    <template x-for="(f, idx) in _folderTree">
+                        <li :class="f.cssClass">
+                            <button class="btn-toggle" x-text="f.isOpen? '📂' :  '📁'" x-on:click="toggleFolder(idx)">📂</button>
+                            <span x-text="f.folderName"></span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            @* Hiển thị file và công cụ *@
+            <div class="fm-main-panel"></div>
+
+            @* Thông tin bổ sung *@
+            <div class="fm-additional-info">
+                Thong tin bo sung
+            </div>
+
+        </div>
+    </div>
+
+    <script defer src="~/lib/alpinejs/cdn.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/lib/filemanager/js/filemanager.js" asp-append-version="true"></script>
+
+</body>
+</html>

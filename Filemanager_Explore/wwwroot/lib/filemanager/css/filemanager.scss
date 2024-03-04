@@ -1,0 +1,70 @@
+$fm-height: 500px;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,li{
+    list-style-type: none;
+}
+
+.filemanager {
+    .btn-toggle {
+        font-family: monospace;
+        background-color: aquamarine;
+        line-height: 10px;
+        width: 20px;
+        height: 20px;
+        text-decoration: none;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+    > div {
+        border: 1px solid red;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 4px;
+
+    .fm-toolbox {
+        grid-column: 1 / 5;
+        grid-row: 1 / 2;
+    }
+
+    .fm-folder-tree {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .fm-main-panel {
+        grid-column: 2 / 5;
+        grid-row: 2 / 3;
+        height: $fm-height;
+    }
+
+    .fm-additional-info {
+        grid-column: 1 / 5;
+        grid-row: 3 / 4;
+    }
+}
+
+$folder-level-step: 10px;
+@for $i from 1 through 20 {
+    .folder-level-#{$i} {
+        padding-left: $folder-level-step * ($i - 1);
+        @if $i > 1 {
+            display: none;
+        }
+    }
+}
+
+.rotate{
+    transform: rotate(90dd);
+}
+.show{
+    display: block;
+}
